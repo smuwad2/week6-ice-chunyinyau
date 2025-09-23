@@ -15,7 +15,13 @@ export default {
     
     methods: {
         // Add code here
-
+        cycleTheme() {
+            if (this.currentThemeIndex === 2) {
+                this.currentThemeIndex == 0;
+            } else {
+                this.currentThemeIndex += 1;
+            }
+        }
     }
 }
 </script>
@@ -39,7 +45,7 @@ export default {
             <input id="imageUrl" v-model="imageUrl" placeholder="https://example.com/me.jpg"><br><br>
 
             <label>Theme Presets:</label><br>
-            <button class="theme-button">Cycle theme</button> <!-- click button to cycle through the themes -->
+            <button class="theme-button" :class="{}" @click="cycleTheme()">Cycle theme</button> <!-- click button to cycle through the themes -->
             <!-- Dark theme: background-color: #333, text-color: #fff -->
             <!-- Light theme: background-color: #fff, text-color: #000  -->
             <!-- Neon theme: background-color: #39ff14, text-color: #000 -->
