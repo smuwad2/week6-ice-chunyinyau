@@ -16,10 +16,21 @@ export default {
     methods: {
         // Add code here
         cycleTheme() {
-            if (this.currentThemeIndex === 2) {
-                this.currentThemeIndex == 0;
+            if (this.currentThemeIndex == 2) {
+                this.currentThemeIndex = 0;
             } else {
                 this.currentThemeIndex += 1;
+            }
+            
+            if (this.currentThemeIndex == 0) {
+                this.bgColor = '#333';
+                this.textColor = '#fff';
+            } else if (this.currentThemeIndex == 1) {
+                this.bgColor = '#fff';
+                this.textColor = '#000';
+            } else {
+                this.bgColor = '#39ff14';
+                this.textColor = '#000';
             }
         }
     }
@@ -45,7 +56,7 @@ export default {
             <input id="imageUrl" v-model="imageUrl" placeholder="https://example.com/me.jpg"><br><br>
 
             <label>Theme Presets:</label><br>
-            <button class="theme-button" :class="{}" @click="cycleTheme()">Cycle theme</button> <!-- click button to cycle through the themes -->
+            <button class="theme-button" @click="cycleTheme()">Cycle theme</button> <!-- click button to cycle through the themes -->
             <!-- Dark theme: background-color: #333, text-color: #fff -->
             <!-- Light theme: background-color: #fff, text-color: #000  -->
             <!-- Neon theme: background-color: #39ff14, text-color: #000 -->
@@ -54,7 +65,7 @@ export default {
         <!-- Preview Section -->
         <div class="preview-section">
             <h2>Live Preview</h2>
-            <div class="preview-card"> <!-- Add code here to set background color and text color -->
+            <div class="preview-card" :style="{'background-color': bgColor, 'color': textColor}"> <!-- Add code here to set background color and text color -->
                 <img :src="imageUrl" class="preview-img">
                 <h3>{{ name || 'Your Name' }}</h3>
                 <h4>{{ job || 'Job Title' }}</h4>
